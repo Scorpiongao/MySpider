@@ -63,4 +63,4 @@ class Login():
 
 if __name__ =='__main__':
     app=Login ()
-    app.login('1456586096@qq.com','mlf1456586096@')
+    app.login('your qq_email or username','password')
