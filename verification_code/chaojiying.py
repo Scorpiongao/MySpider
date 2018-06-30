@@ -2,6 +2,8 @@ import requests
 from hashlib import md5
 from PIL import Image
 from io import BytesIO
+from .config import *
+
 
 class Chaojiying(object):
 
@@ -45,7 +47,7 @@ class Chaojiying(object):
         return r.json()
 
 if __name__ =='__main__':
-    app=Chaojiying('fengzicode','fengzi258',896521)
+    app=Chaojiying(CHAOJIYING_USERNAME,CHAOJIYING_PASSWORD,CHAOJIYING_SOFT_ID)
     image=Image.open('code.png')
     bytes_array = BytesIO()
     print(bytes_array,bytes_array.getvalue(),sep= '\n' )

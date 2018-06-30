@@ -6,9 +6,10 @@ import time
 from io import BytesIO
 from PIL import Image
 from selenium .webdriver import ActionChains
+from .config import *
 
-EMAIL='1456586096@qq.com'
-PASSWORD='mlf123456'
+EMAIL = EMAIL
+PASSWORD = PASSWORD
 BORDER=6
 
 

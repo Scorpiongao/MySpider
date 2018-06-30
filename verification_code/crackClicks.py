@@ -7,14 +7,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from chaojiying import Chaojiying
+from .config import *
 
-EMAIL = '1456586096@qq.com'
-PASSWORD = 'mlf123456'
+EMAIL = EMAIL
+PASSWORD = PASSWORD
 
-CHAOJIYING_USERNAME = 'fengzicode'
-CHAOJIYING_PASSWORD = 'fengzi258'
-CHAOJIYING_SOFT_ID = 896521
-CHAOJIYING_KIND = 9102
+CHAOJIYING_USERNAME = CHAOJIYING_USERNAME
+CHAOJIYING_PASSWORD = CHAOJIYING_PASSWORD
+CHAOJIYING_SOFT_ID = CHAOJIYING_SOFT_ID
+CHAOJIYING_KIND = CHAOJIYING_KIND
 
 
 class CrackTouClick():
