@@ -12,9 +12,9 @@
     
 - http请求过程
     - ![模型图](https://images2017.cnblogs.com/blog/1122865/201711/1122865-20171109162243872-1491006257.png)
-    - ![模型图](https://img-blog.csdn.net/20171121210239901?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjkxODY0ODk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ### 请求
-- 请求方法·Request Method
+1. 请求方法·Request Method
     - GET
     - POST
     - 区别
@@ -22,10 +22,10 @@
         - GET请求提交的数据最多只有1024字节，而POST没有限制
         - 一般来说，登录时需要提交用户名和密码，其中包含敏感的信息，用POST表单传输
 
-- 请求网址·Request URL
+2. 请求网址·Request URL
     - URL：统一资源定位符
 
-- 请求头·Request Headers
+3. 请求头·Request Headers
     - 常用头信息
     - Accept：请求报头域，用于指定客户端可接受哪些类型的信息
     - Accept-Language：指定客户端可接受语言类型
@@ -39,28 +39,28 @@
         - application/json：JSON类型
         - 对照表参考：http://tool.oschina.net/commons
         - 登录时，填写了用户名和密码信息，提交时这些内容会以表单的形式提交给服务器，此时需要注意Request Headers中指定Content-Type为application/x-www-form-urlencode
-        - Content-Type和POST提交数据方式的关系
-            
-            
+        - Content-Type和POST提交数据方式的关系  
+            ```
             Content-Type                          提交数据的方式
             application/x-www-form-urlencode      表单数据
             multipart/form-data                   表单文件上传
             application/json                      序列化JSON数据
-            text/xml                              XML数据      
-- 请求体·Request Body
+            text/xml                              XML数据  
+            ```    
+4. 请求体·Request Body
     - 请求体一般承载的内容是POST请求中的表单数据，对于GET请求，可能为空
     
     
 ### 响应
-- 相应状态码
+1. 相应状态码
     - http.md中有状态码说明
-- 响应头
+2. 响应头
     - 类似请求头
     - Set-Cookie：设置Cookies，下次请求带上Cookies请求
     - Content-Type
     - Server
     - Content-Encoding
-- 响应体
+3. 响应体
     - 网页的源代码或JSON数据
 
 ## 网页基础
@@ -86,6 +86,7 @@
     
 ## 爬虫基本原理
 > 我们可以把互联网比作一张大网，而爬虫便是网上爬行的蜘蛛
+>
 > 爬虫就是获取页面并提取和保存信息的自动化程序
 
 - 参考资料
@@ -107,16 +108,15 @@
     - 能自动在网络上流窜
 
 - 三大步骤（ 请求 ---> 解析 ---> 存储 ）
-    - 获取网页
+    1. 获取网页
         - urllib
         - request
-    - 提取正确的信息（解析）
-        - ![解析库](https://img-blog.csdn.net/20171123071158389?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjkxODY0ODk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+    2. 提取正确的信息（解析）
         - re
         - xpath
         - Beautiful Soup
         - pyquery
-    - 根据一定规则自动跳到另外的网页上执行上两步内容，保存数据
+    3. 保存数据
         - 静态文件
             - txt
             - json
