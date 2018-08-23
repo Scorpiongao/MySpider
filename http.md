@@ -81,8 +81,7 @@
         5xx      服务器错误     500=服务器内部错误；503=以后重试
 
 - 首部字段或消息头
-    
-    
+    ```
     Host：github.com
     User-Agent：Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/56.0
     Accept：text/html
@@ -93,4 +92,4 @@
     origin：https://github.com
     Cookie：logged_in=yes; _octo=GH1.1.760…3; tz=Asia%2FShanghai; _gat=1
     Connection：keep-alive
-
+    ```
