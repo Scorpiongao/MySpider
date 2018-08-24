@@ -1,0 +1,84 @@
+# BeautifulSoup4
+- 现在使用BeautifulSoup4
+- http://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/
+- 几个常用提取信息工具的比较：
+    - 正则： 很快，不好用，不许安装
+    - beautifulsoup：慢，使用简单，安装简单
+    - lxml： 比较快，使用简单，安装一般
+- 解析器
+    - html.parser : 执行速度适中、文档容错能力强
+    - lxml : 速度快、文档容错能力强
+    - xml : 速度快、唯一支持XML的解析器
+    - html5lib : 最好的容错性、以浏览器的方式解析文档、生成HTML5格式的文档，速度慢
+
+- 四大对象
+    - Tag
+    - NavigableString
+    - BeautifulSoup
+    - Comment
+- Tag
+    - 对应Html中的标签
+    - 可以通过soup.tag_name
+    - tag两个重要属性
+        - name
+        - attrs 
+ 
+- NavigableString
+    - 对应内容值
+  
+- BeautifulSoup
+    - 表示的是一个文档的内容，大部分可以把他当做tag对象
+    - 一般我们可以用soup来表示
+- Comment
+    - 特殊类型的NavagableString对象， 
+    - 对其输出，则内容不包括注释符号
+
+- 基本用法
+    - 节点选择器
+        - 选择元素
+            - `soup.tag_name` : 返回该第一个结果节点的全部内容，对象为Tag类型
+        - 提取信息
+            - 提取名称 `soup.tag.name`
+            - 提取属性 `soup.tag.attrs` · `soup.tag.attrs['key']`
+            - 提取内容 `soup.tag.string`
+        - 嵌套选择
+        - 关联选择
+            - 父(祖先)节点 parent(parents)
+            - 子(孙)节点  child(children)
+            - 兄弟节点  
+                - next_sibling(s)
+                - previous_sibling(s)
+            - 有些返回的是可迭代的列表对象
+        - 案例v1
+
+- 遍历文档对象
+    - contents: tag的子节点以列表的方式给出 
+    - children： 子节点以迭代器形式返回 
+    - descendants： 所子孙节点
+    - string
+
+- 搜索文档对象（方法选择器）
+    - find_all(name, attrs={}, recursive, text, ** kwargs)  
+        - name:按照那个字符串搜索，可以传入的内容为
+            - 字符串
+            - 正则表达式
+            - 列表
+        - attrs参数，可以用来表示属性
+        - text： 对应tag的文本值
+        - 案例v2
+    - find(name=None, attrs={}, recursive=True, text=None,**kwargs)
+        - 返回单个匹配元素
+        - 用法与find_all()一样
+
+- css选择器
+    - 使用soup.select, 返回一个列表
+    - 通过标签名称: soup.select("title")            
+    - 通过类名： soup.select(".content")
+    - id查找: soup.select("#name_id")
+    - 组合查找（嵌套）: soup.select("div #input_content")
+    - 属性查找: soup.select("img[class='photo'])
+        - 获取属性 `soup.select[0].tag.attrs['key']`
+    - 获取tag内容
+        - tag.get_text
+        - tag.string
+    - 案例v3
