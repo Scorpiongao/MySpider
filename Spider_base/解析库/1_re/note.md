@@ -20,17 +20,56 @@
 - $:匹配字符串的结尾
 - \b:匹配单词的边界
 - ():对正则表达式内容进行分组， 从第一个括号开始，编号逐渐增大
-    
+   ```
         验证一个数字： ^\d$
         必须有一个数字，最少一位：^\d+$
         只能出现数字，且位数为5-10位： ^\d{5,10}$
         注册者输入年龄，要求16岁以上，99岁以下： ^[16-99]$
         只能输入英文字符和数字： ^[A-Za-z0-9]$
         验证qq号码： [0-9]{5,12}
-        
+   ```   
 - \A: 只匹配字符串开头， \Aabcd, 则abcd
 - \Z: 仅匹配字符串末尾， abcd\Z, abcd
 - |: 左右任意一个
 - (?P<name>...): 分组，除了原来的编号再制定一个别名， (?P<id>12345){2}， 1234512345
 - (?P=name): 引用分组， 
-        
+- 匹配中文
+    - 中文unicode范围主要在[u4e00-u9fa5]
+    - 案例v    
+
+## 正则常用方法：
+- match: 从开始位置开始查找，一次匹配
+- search：从任何位置查找，一次匹配， 案例v25
+- findall： 全部匹配，返回列表, 案例v26
+- finditer： 全部匹配，返回迭代器, 案例v26
+- split： 分割字符串，返回列表
+- sub：替换
+- 一般使用方法(使用compile)
+    - 第一种
+        - `pattern.match(string,pos=0,endpos=-1)`
+        ```
+        # 返回Pattern对象
+        pattern = re.compile(r'regex表达式',re.S)
+        # 可以指定span区间，返回一个Match对象
+        s = pattern.match(content[,start,end])
+        #其他方法类似
+        ```
+    - 第二种
+        - `re.match(pattern,string,flags=0)`
+        ```     
+        pattern = re.compile(r'regex表达式',re.I)
+        #这种不能指定start与end
+        s = re.match(pattern,content)
+        ```
+
+
+    
+### 贪婪与非贪婪模式
+- 贪婪模式(.*)： 在整个表达式匹配成功的前提下，尽可能多的匹配
+- 非贪婪模式(.*?)： xxxxxxxxxxxxxxxxxxxxxx, 尽可能少的匹配
+- python里面数量词默认是贪婪模式
+- 例如：
+    - 查找文本abbbbbbccc
+    - re是 ab*
+    - 贪婪模式： 结果是abbbbbb
+    - 非贪婪： 结果是ab     
