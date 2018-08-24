@@ -1,3 +1,9 @@
+# XML
+- XML(EXtensibleMarkupLanguage)   
+-    http://www.w3school.com.cn/xml/index.asp
+- 案例v1.xml
+- 概念：父节点，子节点，先辈节点，兄弟节点，后代节点
+
 # XPath
 - 在XML文件中查找信息的一套规则/语言，根据XML的元素或者属性进行遍历
 - http://www.w3school.com.cn/xpath/index.asp
