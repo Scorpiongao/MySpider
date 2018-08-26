@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import json
 
 headers = {
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36',
@@ -43,13 +43,22 @@ def parse_html(html):
                 'info':info
             }
 
+def save_to_json(data):
+    '''保存为json文件'''
+    if data:
+        with open('douban-top250.json','a',encoding= 'utf-8')as f:
+            f.write(json.dumps(data,indent= 2,ensure_ascii= False ) )
 
 def main(offset):
     '''主函数'''
+    movies_list=[]
     url = "https://movie.douban.com/top250?start=" + str(offset*25)
     html = get_page_text(url)
     for movie in parse_html(html):
+        movies_list .append(movie)
         print(movie)
+    save_to_json(movies_list )
+
 if __name__ == '__main__':
     for i in range(10):
         main(i)
