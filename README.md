@@ -110,12 +110,20 @@
 - 三大步骤（ 请求 ---> 解析 ---> 存储 ）
     1. 获取网页
         - urllib
+            - cookies
+            - youdao
+            - renren
         - request
+            - session(v7)
     2. 提取正确的信息（解析）
         - re
+            - maoyan-top100
         - xpath
+            - lianjia
         - Beautiful Soup
+            - douban-top250
         - pyquery
+            - zhihu-explore
     3. 保存数据
         - 静态文件
             - txt
