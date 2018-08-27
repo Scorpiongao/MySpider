@@ -1,8 +1,46 @@
 # MySQL
 - 关系型数据库
 - 由行、列组成的表，每一列是一个字段，每一行是一条记录
+- 擅长用高效且紧凑的形式存储结构化数据
+- 主键：表中各行的唯一标识符
+- 外键：引用同一个表或不同表中某行的主键（关系）
+- 优点：存储数据很高效，且避免了重复
+- 缺点：数据存放在多个表中，变得复杂（多个表中的关系用联结实现）
+
 - python3支持PyMySQL
+- 命令行启动
+    - `cd C:\Program Files\MySQL\MySQL Server 5.7\bin`
+    - `mysql -u root -p`
+    - `password:ming123`
 - 安装：pip install pymysql
+
+- SQL基本操作命令
+    - show databases;显示当前所有数据库
+    - use database;选择数据库
+    - show tables;显示当前数据库中所有表
+    - desc table_name;表的描述信息
+    - select * from table_name;从表中导出全部信息
+    - show full columns from table_name;显示表每列信息
+    - 增删改查操作
+        - insert into table_name values(v1,v2,v3...);
+        - update table_name set k1=v11 where k2=v2;
+        - select k1,k2 from table_name;
+        - delect from table_name where k1=v1;
+    - 对表结构的操作
+        - 添加列
+            - alter table table_name add 列名 列数据类型 [after 位置];
+        - 修改列
+            - alter table table_name change 列名 列新名 新数据类型; 
+        - 删除列
+            - alter table table_name drop 列名;
+        - 重命名表
+            - alter table table_name rename 新表明;
+    - 删除数据库和表
+        - 删除表
+            - drop table table_name;
+        - 删除数据库
+            - drop database db_name;
+    
 
 ## 1. 创建数据库和表
 - 案列v1
