@@ -1,4 +1,5 @@
 # Ajax
+- [W3School-ajax](http://www.w3school.com.cn/ajax/ajax_intro.asp)
 > AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。
 
 > AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
@@ -10,4 +11,5 @@
 - 异步请求（页面下拉，加载新内容或有加载更多按钮）
 - 一定会有url，请求方法，可能有数据
 - 请求类型：XHR
+- request headers中 x-requested-with: XMLHttpRequest，标记该请求为ajax请求
 - 一般使用json格式

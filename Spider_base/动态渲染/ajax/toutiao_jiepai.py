@@ -71,17 +71,18 @@ def parse_json(data):
 #     else:
 #         print('Failed to save image.')
 
-
 def save_image(result):
     '''存储为文件'''
     #文件的存储路径(可自定义路径)
     try:
+        #根目录
         root = keyword
         if not os.path .exists(root) :
             os.mkdir(root)
             print(u'%s 文件夹创建成功'%root )
 
         title = result.get('title')
+        #每个图集目录
         file_path = '{root}\{title}'.format(root=root,title=title)
         if not os.path .exists(file_path) :
             os.mkdir(file_path)
@@ -123,6 +124,7 @@ if __name__ == '__main__':
     #开启多进程，进程池
     pool = Pool ()
     groups = [x*20 for x in range(Start_page ,End_page +1)]
+    #pool.map(func,iterable)
     pool.map(main,groups )
     pool.close()
     pool.join()
