@@ -17,6 +17,7 @@ items = doc('.explore-tab .feed-item').items()
 for item in items :
     question = item ('h2').text()
     author = item ('.author-link-line').text()
+    #借助pyquery将正文中的HTML标签去掉
     answer = pq(item ('.content').html() ).text()
     # print(question ,author ,answer )
     file = open('zhihu.txt','a',encoding= 'utf-8')

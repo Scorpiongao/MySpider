@@ -41,6 +41,9 @@
     - tag.text()
 - 获取节点的html
     - tag.html()
+```
+#借助pyquery将正文中的HTML标签去掉
+answer = pq(item ('.content').html() ).text()```
     
 ## 节点操作(class属性)
 - addClass(value)
