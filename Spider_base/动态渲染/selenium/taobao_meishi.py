@@ -44,7 +44,9 @@ def index_page(page):
             input.clear()
             input .send_keys(page)
             submit .click()
+        #等待高亮页码中的数字与当前页面一样
         wait.until(EC.text_to_be_present_in_element ((By .CSS_SELECTOR ,'#mainsrp-pager li.item.active .num'),str(page)))
+        #等待商品加载完成
         wait .until(EC .presence_of_element_located((By .CSS_SELECTOR ,'#mainsrp-itemlist .items .item')) )
         get_products()
     except TimeoutException  :
@@ -73,7 +75,7 @@ def get_products():
 
             }
             print(product)
-            # save_to_mongodb(product)
+            save_to_mongodb(product)
     except TypeError:
         print('[TypeError]....')
 
