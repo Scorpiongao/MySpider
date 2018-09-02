@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from chaojiying import Chaojiying
-from .config import *
+from config import *
 
 EMAIL = EMAIL
 PASSWORD = PASSWORD

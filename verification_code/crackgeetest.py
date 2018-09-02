@@ -6,7 +6,7 @@ import time
 from io import BytesIO
 from PIL import Image
 from selenium .webdriver import ActionChains
-from .config import *
+from config import *
 
 EMAIL = EMAIL
 PASSWORD = PASSWORD
@@ -15,9 +15,9 @@ BORDER=6
 
 class CrackGeetest():
     def __init__(self):
-        self.url='https://auth.geetest.com/login/'
+        self.url='https://account.geetest.com/login/'
         self.browser=webdriver .Chrome ()
-        self.wait=WebDriverWait (self.browser ,20)
+        self.wait=WebDriverWait (self.browser ,10)
         self.email=EMAIL
         self.password=PASSWORD
 

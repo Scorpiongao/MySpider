@@ -2,7 +2,7 @@ import requests
 from hashlib import md5
 from PIL import Image
 from io import BytesIO
-from .config import *
+from config import *
 
 
 class Chaojiying(object):

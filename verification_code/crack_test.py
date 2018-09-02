@@ -1,3 +1,6 @@
+'''
+极验平台，滑块验证码
+'''
 import time
 from io import BytesIO
 from PIL import Image
@@ -6,9 +9,10 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from config import *
 
-EMAIL = '1456586096@qq.com'
-PASSWORD = 'mlf123456'
+EMAIL = EMAIL
+PASSWORD = PASSWORD
 BORDER = 6
 INIT_LEFT = 60
 
@@ -17,7 +21,8 @@ class CrackGeetest():
     def __init__(self):
         self.url = 'https://account.geetest.com/login'
         self.browser = webdriver.Chrome()
-        self.wait = WebDriverWait(self.browser, 20)
+        self.browser .maximize_window()
+        self.wait = WebDriverWait(self.browser, 10)
         self.email = EMAIL
         self.password = PASSWORD
 
@@ -39,7 +44,9 @@ class CrackGeetest():
         """
         img = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'geetest_canvas_img')))
         time.sleep(2)
+        #获取图片位置
         location = img.location
+        #图片大小（宽高）
         size = img.size
         top, bottom, left, right = location['y'], location['y'] + size['height'], location['x'], location['x'] + size[
             'width']
@@ -70,6 +77,7 @@ class CrackGeetest():
         top, bottom, left, right = self.get_position()
         print('验证码位置', top, bottom, left, right)
         screenshot = self.get_screenshot()
+        #剪切图片
         captcha = screenshot.crop((left, top, right, bottom))
         captcha.save(name)
         return captcha
@@ -162,10 +170,13 @@ class CrackGeetest():
         :param track: 轨迹
         :return:
         """
+        #鼠标按住滑块对象
         ActionChains(self.browser).click_and_hold(slider).perform()
         for x in track:
+            #拖动滑块
             ActionChains(self.browser).move_by_offset(xoffset=x, yoffset=0).perform()
         time.sleep(0.5)
+        #鼠标放开
         ActionChains(self.browser).release().perform()
 
     def login(self):
@@ -173,6 +184,7 @@ class CrackGeetest():
         登录
         :return: None
         """
+        #获取登录按钮
         submit = self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'login-btn')))
         submit.click()
         time.sleep(10)
@@ -181,12 +193,15 @@ class CrackGeetest():
     def crack(self):
         # 输入用户名密码
         self.open()
+        self.check_verify_success()
+
+    def check_verify_success(self):
         # 点击验证按钮
         button = self.get_geetest_button()
         button.click()
         # 获取验证码图片
         image1 = self.get_geetest_image('captcha1.png')
-        # 点按呼出缺口
+        # 点击呼出缺口
         slider = self.get_slider()
         slider.click()
         # 获取带缺口的验证码图片
@@ -201,14 +216,13 @@ class CrackGeetest():
         print('滑动轨迹', track)
         # 拖动滑块
         self.move_to_gap(slider, track)
+        try:
+            success = self.wait.until(
+                EC.text_to_be_present_in_element((By.CLASS_NAME, 'geetest_success_radar_tip_content'), '验证成功'))
+            print(success)
 
-        success = self.wait.until(
-            EC.text_to_be_present_in_element((By.CLASS_NAME, 'geetest_success_radar_tip_content'), '验证成功'))
-        print(success)
-
-        # 失败后重试
-        if not success:
-            self.crack()
+        except :
+            self.check_verify_success()
         else:
             self.login()
 
