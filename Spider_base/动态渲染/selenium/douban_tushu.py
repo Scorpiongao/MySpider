@@ -1,5 +1,6 @@
 '''
 https://book.douban.com/subject_search?search_text=python&cat=1001&start=%s0
+https://book.douban.com/subject_search?search_text=python&cat=1001&start=30(url规律)
 使用selenium爬去页面
 保存内容后用xpath进行分析
 '''
