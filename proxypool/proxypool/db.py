@@ -7,6 +7,7 @@ import re
 
 
 class RedisClient(object):
+    '''连接redis'''
     def __init__(self, host=REDIS_HOST, port=REDIS_PORT, password=REDIS_PASSWORD):
         """
         初始化

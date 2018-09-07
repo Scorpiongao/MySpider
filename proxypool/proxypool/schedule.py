@@ -1,3 +1,4 @@
+'''调度器--测试'''
 import time
 from multiprocessing import Process
 import asyncio
@@ -27,7 +28,7 @@ class ValidityTester(object):
 
     async def test_single_proxy(self, proxy):
         """
-        text one proxy, if valid, put them to usable_proxies.
+        test one proxy, if valid, put them to usable_proxies.
         """
         try:
             async with aiohttp.ClientSession() as session:

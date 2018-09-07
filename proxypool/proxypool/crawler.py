@@ -5,8 +5,11 @@ from pyquery import PyQuery as pq
 
 
 class ProxyMetaclass(type):
+    '''元类，实现__new__()方法，获取所有以crawl开头的方法，所以扩展时只需添加一个以crawl_开头的方法即可'''
+    #__new__(cls,name,bases,attrs)参数固定，其中attrs为类的所有方法信息
     def __new__(cls, name, bases, attrs):
         count = 0
+        #定义一个为空列表的属性，用于存储以crawl_开头的方法
         attrs['__CrawlFunc__'] = []
         for k, v in attrs.items():
             if 'crawl_' in k:
@@ -17,6 +20,7 @@ class ProxyMetaclass(type):
 
 
 class Crawler(object, metaclass=ProxyMetaclass):
+    '''爬取代理，，将ProxyMetaclass设置为Crawler的元类'''
     def get_proxies(self, callback):
         proxies = []
         for proxy in eval("self.{}()".format(callback)):

@@ -5,6 +5,7 @@ from proxypool.setting import *
 import sys
 
 class Getter():
+    '''爬取器'''
     def __init__(self):
         self.redis = RedisClient()
         self.crawler = Crawler()
