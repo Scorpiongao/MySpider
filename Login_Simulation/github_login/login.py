@@ -59,8 +59,9 @@ class Login():
             f.write(resp .content )
 
 
-
+EMAIL = '1456586096@qq.com'
+PASSWORD = 'mlf1456586096@'
 
 if __name__ =='__main__':
     app=Login ()
-    app.login('your qq_email or username','password')
+    app.login(EMAIL ,PASSWORD )
