@@ -107,15 +107,15 @@
     - 能按作者要求下载数据或者内容
     - 能自动在网络上流窜
 
-- 三大步骤（ 请求 ---> 解析 ---> 存储 ）
-    1. 获取网页
+- **三大步骤（ 请求 ---> 解析 ---> 存储 ）**
+    1. **获取网页**
         - urllib
             - cookies
             - youdao
             - renren
         - request
             - session(v7)
-    2. 提取正确的信息（解析）
+    2. **提取正确的信息（解析）**
         - re
             - maoyan-top100
         - xpath
@@ -124,7 +124,7 @@
             - douban-top250
         - pyquery
             - zhihu-explore
-    3. 保存数据
+    3. **保存数据**
         - 静态文件
             - txt
             - json
@@ -136,12 +136,18 @@
                 - MongoDB
                 - Redis
     
-- JavaScript渲染页面
+- **JavaScript渲染页面**
     - 使用基本的http请求得到的源代码可能跟浏览器中的页面源代码不太一样
     - 分析后台的Ajax接口，也可以使用Selenium、Splash来实现模拟JavaScript渲染
     - 抓包分析
-        - ajax：XHR
+        - ajax：XHR (x-requested-with: XMLHttpRequest)
         - 静态：DOC
+    - Ajax
+        - toutiao-jiepai
+        - douyu
+    - Selenium
+        - taobao-meishi
+        - douban-tushu
 
 - 会话session和Cookies
     - 背景
@@ -164,7 +170,9 @@
             - 当客户端第一次请求服务器时，服务器会返回一个请求头中带有Set-Cookies字段的响应给客户端，用来标记是哪个用户，客户端浏览器会把Cookies保存起来。
             下次请求时，浏览器会把此Cookies放在请求头一起提交给服务器，Cookies携带了会话ID信息，服务器检查Cookies即可找到对应的会话是什么，然后再判断会话来辨别用户状态
             - 有过期时间（Expires）
-            
+    - 应用
+        - 模拟登陆时，session保持登录状态
+        - **Login_Simulation**    
 ### 代理(proxy server)
 - 代理服务器
     - 网络信息的中转站，可以隐藏真实IP，防止被封号
@@ -178,3 +186,6 @@
     - 突破中国电信的IP封锁：中国电信用户有很多网站是被限制访问的，这种限制是人为的，不同Serve对地址的封锁是不同的。所以不能访问时可以换一个国外的代理服务器试试
     - 提高访问速度：通常代理服务器都设置一个较大的硬盘缓冲区，当有外界的信息通过时，同时也将其保存到缓冲区中，当其他用户再访问相同的信息时， 则直接由缓冲区中取出信息，传给用户，以提高访问速度
     - 隐藏真实IP：上网者也可以通过这种方法隐藏自己的IP，免受攻击
+
+- 代理池
+    - proxypool
