@@ -8,6 +8,7 @@
         - web程序，可以观察mitmproxy捕获的请求
         
 ### 安装
+- [崔庆才PY3--mitmproxy安装](https://cuiqingcai.com/5391.html)
 - 最简单的安装方式
     - `pip install mitmproxy`
 - Windows 下安装
@@ -32,6 +33,7 @@
         - 在手机或pc机上打开浏览器访问 mitm.it 这个地址，选择当前平台的图标，点击安装证书。
         
 ### 抓包原理
+- [原理图](http://static.open-open.com/news/uploadImg/20150831/20150831162141_613.jpg)
 > 和Charles一样，mitmproxy运行于自己的PC上，mitmproxy会在PC的8080端口运行，然后开启一个代理服务，这个服务实际上是一个HTTP/HTTPS的代理
 
 > 手机和PC在同一个局域网内，设置代理为mitmproxy的代理地址，这样手机在访问互联网的时候流量数据包就会流经mitmproxy，
@@ -44,3 +46,33 @@
     - `mitmdump -w outfile` outfile为文件名
 - 指定脚本处理截获的数据(-s参数)
     - `mitmdump -s script.py` script.py为脚本文件名，在当前命令执行的目录中
+
+- **日志输出**
+    - mitmdump提供专门的日志输出功能，可以设定不同颜色的输出结果
+    - 调用ctx模块，其有一个log功能
+    - 不同颜色内容对应级别不同
+        - info() : 白色
+        - warn() : 黄色
+        - error() : 红色
+    - 脚本案例v1
+    
+- **Request**
+    - Request常用属性
+        - url
+        - headers
+        - cookies
+        - host
+        - method
+        - scheme
+    - 脚本案例v2
+
+- **Reponse**
+    - 响应的内容
+    - 常见Reponse属性
+        - status_code
+        - headers
+        - cookies
+        - text
+        - content
+    - 提取响应的信息
+    - 脚本案例v3

@@ -33,7 +33,8 @@
 - 参考教程
     - [抓包神器之Charles--常用功能](https://blog.csdn.net/mxw2552261/article/details/78645118)
     - [charles使用教程](https://blog.csdn.net/Naruto_22/article/details/72900708)
-
+    - [催庆才PY3--Charles安装](https://cuiqingcai.com/5255.html)
+    
 - **证书配置（window）**
     - Help --> SSL Proxying --> Install Charles Root Certificate
     - 点击安装证书 --> 下一步 --> 将所有的证书放入下列存储 --> 浏览 --> 受信任的根证书颁发机构 --> 确定 --> 下一步
