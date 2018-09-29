@@ -4,13 +4,14 @@
 import json
 from mitmproxy import ctx
 ##数据可以抓取，但存储到mongoDB出现问题，有待解决。。。
-import pymongo
-
-client = pymongo .MongoClient (host= 'localhost',port= 27017)
-db = client ['hupu']
-collection = db['followd']
+# import pymongo
+#
+# client = pymongo .MongoClient (host= 'localhost',port= 27017)
+# db = client ['hupu']
+# collection = db['followd']
 
 def response(flow):
+    result_list = []
     global collection
     url = 'https://bbs.mobileapi.hupu.com/1/7.2.10/recommend/getThreadsList'
     if flow .request.url.startswith(url):
@@ -51,5 +52,11 @@ def response(flow):
                         'forum_name': forum_name
                     }
                     ctx.log.info(str(result))
-                    collection .update({'tid':result ['tid'],'title':result ['title']},{'$set':result },True )
+                    result_list.append(result)
+
+    if len(result_list) > 0:
+        with open('hupu.json', 'a+', encoding='utf-8') as f:
+
+            f.write(json.dumps(result_list, indent= 2,ensure_ascii=False))
+                    # collection .update({'tid':result ['tid'],'title':result ['title']},{'$set':result },True )
 

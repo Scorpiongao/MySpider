@@ -131,5 +131,10 @@
             - wait()
             - cancel()
     - 案例weixin_moments
+    - charles + mitmproxy/mitmdump + appium
+        - charles : 探测接口链接和参数，无法构造请求的参数（涉及到加密算法）
+        - mitmproxy/mitmdump : 对接python脚本，对抓取的数据包进行处理，用python脚本直接对请求和响应进行处理（绕过请求参数的构造）
+        - appium : 指定自动化脚本模拟实现App的一系列操作（点击、拖动等）
+        - 案例mitmAppiumJD
             
         

@@ -1,0 +1,10 @@
+An unknown server-side error occurred while processing the command. Original error: Cannot start the 'com.jingdong.app.mall' application. Visit https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/android/activity-startup.md for troubleshooting. Original error: Error executing adbExec. Original error: 'Command 'C\:\\Users\\zs\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe -P 5037 -s a50bde750804 shell am start -W -n com.jingdong.app.mall/.MainFrameActivity -S' exited with code 1'; Stderr: 'java.lang.SecurityException: Permission Denial: starting Intent { flg=0x10000000 cmp=com.jingdong.app.mall/.MainFrameActivity } from null (pid=5420, uid=2000) not exported from uid 10159
+ at android.os.Parcel.readException(Parcel.java:1684)
+ at android.os.Parcel.readException(Parcel.java:1637)
+ at android.app.ActivityManagerProxy.startActivityAndWait(ActivityManagerNative.java:3291)
+ at com.android.commands.am.Am.runStart(Am.java:638)
+ at com.android.commands.am.Am.onRun(Am.java:394)
+ at com.android.internal.os.BaseCommand.run(BaseCommand.java:51)
+ at com.android.commands.am.Am.main(Am.java:124)
+ at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+ at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:359)'; Code: '1'
