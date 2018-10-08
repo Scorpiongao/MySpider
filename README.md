@@ -90,8 +90,7 @@
 > 爬虫就是获取页面并提取和保存信息的自动化程序
 
 - 参考资料
-    - python网络数据采集， 图灵工业出版
-    - 精通Python爬虫框架Scrapy， 人民邮电出版社
+    - python3网络爬虫开发实战，崔庆才，人民邮电出版社
     - [Python3网络爬虫](http://blog.csdn.net/c406495762/article/details/72858983)
     - [Scrapy官方教程](http://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/tutorial.html)
 
@@ -189,3 +188,26 @@
 
 - 代理池
     - proxypool
+
+### 爬虫框架
+- Pyspider
+    - 可以快速编写爬虫，但可配置化程度不高，异常处理能力有限
+    - 详见pyspider
+- Scrapy
+    - 基于Twisted的异步处理框架，功能强大，爬取效率高，相关扩展件多，可配置和可扩展程度非常高，几乎可以应对所有的反爬虫网站
+    - 详见scrapy_base
+
+### 反爬虫与反反爬虫之战
+- 应对网络的反爬虫措施，一般做以下反反爬虫策略
+    - 降低爬取速度 
+        - time.sleep(3)
+    - 伪装请求头
+        - headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'}
+    - session会话维持
+        - 使用cookies
+    - 模拟登录
+        - 读懂Js加密，模拟构造出请求的参数
+    - 使用selenium
+        - 模拟人的操作去访问服务器
+    - 转为app端抓取
+        - charles + mitmproxy + appium
