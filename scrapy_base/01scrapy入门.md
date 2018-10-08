@@ -152,7 +152,7 @@
     - custom_settings : 字典，专属于本spider的配置，覆盖全局设置，必须在初始化前被更新，定义为类变量
     - crawler : 由from_crawler()方法设置，代表的是本spider类对应的crawler对象，crawler包含很多项目组件，利用它可以获取项目的一些配置信息
 - 常用方法
-    - start_requests() : 默认使用start_urls里面的url生成Requests对象交给Scrapy下载并返回response
+    - **start_requests()** : 默认使用start_urls里面的url生成Requests对象交给Scrapy下载并返回response
     - parse() : 根据返回的response解析出相应的item，item自动进入pipeline； 如果需要，解析出url，url自动交给requests模块，一直循环下去
     - start_request() : 此方法仅能被调用一次，读取start_urls内容并启动循环过程，默认是GET请求方式
         - 启动时以POST访问某个站点，重写这个方法，发送POST时使用FormRequest
@@ -170,4 +170,13 @@
     - closed() : 当spider关闭时，该方法被调用，一般会定义释放资源的一些操作或其他收尾工作 
     - log(message,level=log.WARNING) : 日志记录
     
-## 5. Downloader Middleware的用法
+## 5. Middleware
+- Downloader Middleware
+    - process_request(request,spider)
+    - process_response(request,response,spider)
+    - process_exception(request,exception,spider)
+- Spider Middleware
+    - process_spider_input(response,spider)
+    - process_spider_output(response,result,spider)
+    - process_spider_exception(response,exception,spider)
+    - process_spider_request(start_requests,spider)
