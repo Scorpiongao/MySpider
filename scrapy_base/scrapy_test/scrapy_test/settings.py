@@ -20,7 +20,7 @@ NEWSPIDER_MODULE = 'scrapy_test.spiders'
 # USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -65,9 +65,11 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'scrapy_test.pipelines.ScrapyTestPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'scrapy_test.pipelines.ImagePipeline': 300,#优先级高可以保证下载失败的图片不保存到mysql,mongodb
+   'scrapy_test.pipelines.MongoPipeline': 301,
+   'scrapy_test.pipelines.MysqlPipeline': 302,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -89,3 +91,16 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+MAX_PAGE = 50
+MONGO_URI = 'localhost'
+MONGO_DB = 'images360'
+
+MYSQL_HOST = 'localhost'
+MYSQL_DATABASE = 'images360'
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'ming123'
+MYSQL_PORT = 3306
+
+#图片的储存路径
+IMAGES_STORE = r'D:\images\images360'
