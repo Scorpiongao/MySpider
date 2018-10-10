@@ -171,7 +171,9 @@
             - 有过期时间（Expires）
     - 应用
         - 模拟登陆时，session保持登录状态
-        - **Login_Simulation**    
+        - **Login_Simulation** 
+            - douban
+            - zhihu   
 ### 代理(proxy server)
 - 代理服务器
     - 网络信息的中转站，可以隐藏真实IP，防止被封号
@@ -195,6 +197,22 @@
     - 详见pyspider
 - Scrapy
     - 基于Twisted的异步处理框架，功能强大，爬取效率高，相关扩展件多，可配置和可扩展程度非常高，几乎可以应对所有的反爬虫网站
+    - 各大组件
+        - Scrapy Engine
+        - Scheduler
+        - Downloader
+        - Spider
+        - Item Pipeline
+            - **process_item(item,spider)**
+            - open_spider(spider)
+            - close_spider(spider)
+            - from_crawler(cls,crawler)
+        - Middleware
+            - Downloader Middleware
+                - process_request(request,spider)
+                - process_response(request,response,spider)
+                - process_exception(request,exception,spider)
+            - Spider Middleware
     - 详见scrapy_base
 
 ### 反爬虫与反反爬虫之战
@@ -205,6 +223,8 @@
         - headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'}
     - session会话维持
         - 使用cookies
+    - 更换代理
+        - 使用代理IP (proxy pool)
     - 模拟登录
         - 读懂Js加密，模拟构造出请求的参数
     - 使用selenium
