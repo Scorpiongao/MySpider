@@ -43,11 +43,39 @@
             - 返回
                 - process_exception() 应该返回以下之一: 返回 None 、 一个 Response 对象、或者一个 Request 对象。
     - 项目实战httpbin.py
-        - 修改Request请求的User-Agent
+        - **修改Request请求的User-Agent**
             - 修改settings.py中USER_AGENT变量
             - 定义Downloader Middleware的process_request()来修改 
                 - 在middlewares.py文件中添加一个RandomUserAgentMiddleware的类
-                
+            - 修改cookies类似，request.headers['cookies']=''
+        - **使用代理**
+            - 使用request.meta['proxy']
+            ```
+                class RandomProxy(object):
+                    def process_request(self, request, spider):
+                        proxy = random.choice(PROXIES)
+                        if proxy['user_passwd'] is None:
+                            #  没有代理账户验证的代理使用方式
+                            request.meta['proxy'] = "http://" + proxy['ip_port']
+                        else:
+                            #  对账户密码进行 base64 编码转换
+                            base64_userpasswd = base64.b64encode(proxy['user_passwd'])
+                            #  对应到代理服务器的信令格式里
+                            request.headers['Proxy-Authorization'] = 'Basic ' + base64_userpasswd
+                            request.meta['proxy'] = "http://" + proxy['ip_port']     
+            ```
+            - setting中的相关配置
+                    
+                    
+                    PROXIES = [
+                        {'ip_port': '111.8.60.9:8123', 'user_passwd': 'user1:pass1'},
+                        {'ip_port': '101.71.27.120:80', 'user_passwd': 'user2:pass2'},
+                        {'ip_port': '122.96.59.104:80', 'user_passwd': 'user3:pass3'},
+                        {'ip_port': '122.224.249.122:8088', 'user_passwd': 'user4:pass4'},
+                        ]
+
+
+
 ## 2. Spider Middleware
 - 介于Engine和Spider的钩子框架
     - 当Downloader生成Response之后，Response会经过Spider Middleware被发送给Spider
