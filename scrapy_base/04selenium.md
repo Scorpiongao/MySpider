@@ -32,7 +32,7 @@
 - 对接selenium
     - 在Downloader Middleware中实现process_request(request,spider)方法对每个请求进行处理
     - __init__(): 初始化对象
-    - 启动浏览器进行页面的渲染，结果返回给HtmlRequest(url,body,request,encoding,status)对象，其为Response类的子类
+    - 启动浏览器进行页面的渲染，结果返回给HtmlRequest(url=request.url,body=html,request=request,encoding="utf-8",status=200)对象，其为Response类的子类
     - 其返回的Response对象直接传给Spider进行解析    
 - 解析页面
     - spider中解析response
