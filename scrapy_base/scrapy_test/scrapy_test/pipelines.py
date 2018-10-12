@@ -36,9 +36,17 @@ class MongoPipeline(object):
 
     def process_item(self,item,spider):
         # self.logger .debug(item)
-        self.logger .debug(type(item))#item是ImagesItem对象，要转为字典格式
-        if self.db[item .collection] .update({'id':dict(item)['id'],'url':dict(item) ['url']},{'$set':dict(item)},True ) :
-            self.logger .debug('save to mongo: ',dict(item)['url'])
+
+        #images mongodb Item Pipeline
+        # self.logger .debug(type(item))#item是ImagesItem对象，要转为字典格式
+        # if self.db[item .collection] .update({'id':dict(item)['id'],'url':dict(item) ['url']},{'$set':dict(item)},True ) :
+        #     self.logger .debug('save to mongo: ',dict(item)['url'])
+        #     return item
+
+
+        #taobao mongodb Item Pipeline
+        if self.db[item.collection].update({'title': dict(item)['title'], 'price': dict(item)['price']}, {'$set': dict(item)}, True):
+        #     self.logger .debug('save to mongo: ',dict(item)['url'])
             return item
 
     def close_spider(self,spider):

@@ -119,3 +119,62 @@ class RandomUserAgentMiddleware():
         if response .status ==200:
             return response
 
+
+from selenium import webdriver
+from selenium .common .exceptions import  TimeoutException
+from selenium .webdriver .common.by  import By
+from selenium .webdriver .support .ui import WebDriverWait
+from selenium .webdriver .support import expected_conditions as EC
+from scrapy .http import HtmlResponse
+from logging import getLogger
+import time
+
+
+class SeleniumMiddleware():
+    '''selenium middle在Downloader Middleware中实现'''
+    def __init__(self,timeout = None ):
+        #初始化配置
+        self.logger = getLogger(__name__ )
+        self.timeout = timeout
+        self.brower = webdriver .Chrome ()
+        self.brower .maximize_window()
+        self.brower .set_page_load_timeout(self.timeout )
+        self.wait = WebDriverWait (self.brower ,self.timeout )
+
+    def __del__(self):
+        self.brower .close()
+
+    def process_request(self,request,spider):
+        '''
+        Chrome抓取页面
+        :param request: Request对象
+        :param spider: Spider对象
+        :return: HtmlResponse
+        '''
+        self.logger .debug('Chrome is starting')
+        page = request .meta.get('page',1)
+        self.brower .get(request .url)
+        #手机扫码登录，现在淘宝要先登录
+        if page == 1:
+
+            self.logger .debug('扫码登录。。。')
+            time.sleep(10)
+        self.logger .debug('正在爬取第 %s 页'%page)
+        try:
+            self.brower .get(request.url)
+            if page > 1:
+                input = self.wait .until(EC.presence_of_element_located ((By .CSS_SELECTOR ,'#mainsrp-pager .form .input.J_Input')))
+                submit = self.wait .until(EC.presence_of_element_located ((By .CSS_SELECTOR ,'#mainsrp-pager .form .btn.J_Submit')))
+                input .clear()
+                input.send_keys(page)
+                submit .click()
+            self.wait.until(EC.text_to_be_present_in_element ((By .CSS_SELECTOR,'.wraper .items .item.active .num'),str(page)))
+            self.wait.until(EC.presence_of_element_located ((By .CSS_SELECTOR ,'.m-itemlist .items .item')))
+            return HtmlResponse (url= request .url,body= self.brower .page_source ,request= request ,encoding= 'utf-8',status= 200)
+        except TimeoutException :
+            return HtmlResponse (url= request .url ,status= 500,request =request )
+
+
+    @classmethod
+    def from_crawler(cls,crawler):
+        return cls(timeout= crawler .settings.get('SELENIUM_TIMEOUT'))

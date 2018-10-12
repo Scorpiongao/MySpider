@@ -54,7 +54,8 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   'scrapy_test.middlewares.RandomUserAgentMiddleware': 543,
+   # 'scrapy_test.middlewares.RandomUserAgentMiddleware': 543,
+   'scrapy_test.middlewares.SeleniumMiddleware':543,
 }
 
 # Enable or disable extensions
@@ -66,9 +67,10 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'scrapy_test.pipelines.ImagePipeline': 300,#优先级高可以保证下载失败的图片不保存到mysql,mongodb
+   #images的Item Pipeline
+   # 'scrapy_test.pipelines.ImagePipeline': 300,#优先级高可以保证下载失败的图片不保存到mysql,mongodb
    'scrapy_test.pipelines.MongoPipeline': 301,
-   'scrapy_test.pipelines.MysqlPipeline': 302,
+   # 'scrapy_test.pipelines.MysqlPipeline': 302,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,9 +94,10 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+#images settings
 MAX_PAGE = 50
 MONGO_URI = 'localhost'
-MONGO_DB = 'images360'
+# MONGO_DB = 'images360'
 
 MYSQL_HOST = 'localhost'
 MYSQL_DATABASE = 'images360'
@@ -104,3 +107,10 @@ MYSQL_PORT = 3306
 
 #图片的储存路径
 IMAGES_STORE = r'D:\images\images360'
+
+
+#taobao settings
+KEYWORDS = ['算法']
+SELENIUM_TIMEOUT = 10
+
+MONGO_DB = 'taobao'
